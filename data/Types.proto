@@ -1,0 +1,230 @@
+package Types;
+
+message BoolList {
+    repeated bool value = 1;
+}
+message BoolListPacked {
+    repeated bool value = 1 [packed = true];
+}
+message BoolMsg {
+    required bool value = 1;
+}
+message BoolOptMsg {
+    optional bool value = 1;
+}
+
+message BytesList {
+    repeated bytes value = 1;
+}
+message BytesMsg {
+    required bytes value = 1;
+}
+message BytesOptMsg {
+    optional bytes value = 1;
+}
+
+message DoubleList {
+    repeated double value = 1;
+}
+message DoubleListPacked {
+    repeated double value = 1 [packed = true];
+}
+message DoubleMsg {
+    required double value = 1;
+}
+message DoubleOptMsg {
+    optional double value = 1;
+}
+
+enum Enum {
+    ZERO = 0;
+    ONE = 1;
+    TWO = 2;
+    THREE = 3;
+    FOUR = 4;
+    FIVE = 5;
+    SIX = 6;
+    SEVEN = 7;
+    EIGHT = 8;
+    NINE = 9;
+}
+message EnumList {
+    repeated Enum value = 1;
+}
+message EnumListPacked {
+    repeated Enum value = 1 [packed = true];
+}
+message EnumMsg {
+    required Enum value = 1;
+}
+message EnumOptMsg {
+    optional Enum value = 1;
+}
+
+message Fixed32List {
+    repeated fixed32 value = 1;
+}
+message Fixed32ListPacked {
+    repeated fixed32 value = 1 [packed = true];
+}
+message Fixed32Msg {
+    required fixed32 value = 1;
+}
+message Fixed32OptMsg {
+    optional fixed32 value = 1;
+}
+
+message Fixed64List {
+    repeated fixed64 value = 1;
+}
+message Fixed64ListPacked {
+    repeated fixed64 value = 1 [packed = true];
+}
+message Fixed64Msg {
+    required fixed64 value = 1;
+}
+message Fixed64OptMsg {
+    optional fixed64 value = 1;
+}
+
+message FloatList {
+    repeated float value = 1;
+}
+message FloatListPacked {
+    repeated float value = 1 [packed = true];
+}
+message FloatMsg {
+    required float value = 1;
+}
+message FloatOptMsg {
+    optional float value = 1;
+}
+
+message Int32List {
+    repeated int32 value = 1;
+}
+message Int32ListPacked {
+    repeated int32 value = 1 [packed = true];
+}
+message Int32Msg {
+    required int32 value = 1;
+}
+message Int32OptMsg {
+    optional int32 value = 1;
+}
+
+message Int64List {
+    repeated int64 value = 1;
+}
+message Int64ListPacked {
+    repeated int64 value = 1 [packed = true];
+}
+message Int64Msg {
+    required int64 value = 1;
+}
+message Int64OptMsg {
+    optional int64 value = 1;
+}
+
+message Message {
+    required bool bool = 1;
+    optional bytes bytes = 2;
+    repeated Int32Msg int32Msgs = 3;
+}
+message MessageList {
+    repeated Message value = 1;
+}
+message MessageMsg {
+    required Message value = 1;
+}
+message MessageOptMsg {
+    optional Message value = 1;
+}
+
+message SFixed32List {
+    repeated sfixed32 value = 1;
+}
+message SFixed32ListPacked {
+    repeated sfixed32 value = 1 [packed = true];
+}
+message SFixed32Msg {
+    required sfixed32 value = 1;
+}
+message SFixed32OptMsg {
+    optional sfixed32 value = 1;
+}
+
+message SFixed64List {
+    repeated sfixed64 value = 1;
+}
+message SFixed64ListPacked {
+    repeated sfixed64 value = 1 [packed = true];
+}
+message SFixed64Msg {
+    required sfixed64 value = 1;
+}
+message SFixed64OptMsg {
+    optional sfixed64 value = 1;
+}
+
+message SInt32List {
+    repeated sint32 value = 1;
+}
+message SInt32ListPacked {
+    repeated sint32 value = 1 [packed = true];
+}
+message SInt32Msg {
+    required sint32 value = 1;
+}
+message SInt32OptMsg {
+    optional sint32 value = 1;
+}
+
+message SInt64List {
+    repeated sint64 value = 1;
+}
+message SInt64ListPacked {
+    repeated sint64 value = 1 [packed = true];
+}
+message SInt64Msg {
+    required sint64 value = 1;
+}
+message SInt64OptMsg {
+    optional sint64 value = 1;
+}
+
+message StringList {
+    repeated string value = 1;
+}
+message StringMsg {
+    required string value = 1;
+}
+message StringOptMsg {
+    optional string value = 1;
+}
+
+message UInt32List {
+    repeated uint32 value = 1;
+}
+message UInt32ListPacked {
+    repeated uint32 value = 1 [packed = true];
+}
+message UInt32Msg {
+    required uint32 value = 1;
+}
+message UInt32OptMsg {
+    optional uint32 value = 1;
+}
+
+message UInt64List {
+    repeated uint64 value = 1;
+}
+message UInt64ListPacked {
+    repeated uint64 value = 1 [packed = true];
+}
+message UInt64Msg {
+    required uint64 value = 1;
+}
+message UInt64OptMsg {
+    optional uint64 value = 1;
+}
