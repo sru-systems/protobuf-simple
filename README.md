@@ -1,9 +1,9 @@
 # Protobuf-simple
 
 Protobuf-simple is an Haskell implementation of Google's Protocol Buffers
-with an emphasis on simplicity. The implementation consists of a library for
-the encoding and decoding of data and an executable for generating Haskell
-types from proto files.
+version 2 (proto2) with an emphasis on simplicity. The implementation consists
+of a library for the encoding and decoding of data and an executable for
+generating Haskell types from proto files.
 
 
 
