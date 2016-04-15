@@ -19,12 +19,14 @@ data-dir:            data
 
 library
   hs-source-dirs:      src
-  exposed-modules:     Data.ProtoBuf.Default
-                     , Data.ProtoBuf.WireFormat
-  other-modules:       Data.ProtoBuf.FieldNumber
+  exposed-modules:     Data.ProtoBuf
+                     , Data.ProtoBufInt
+  other-modules:       Data.ProtoBuf.Default
+                     , Data.ProtoBuf.FieldNumber
                      , Data.ProtoBuf.Mergeable
                      , Data.ProtoBuf.Required
                      , Data.ProtoBuf.WireEnum
+                     , Data.ProtoBuf.WireFormat
                      , Data.ProtoBuf.WireMessage
                      , Data.ProtoBuf.WireTag
                      , Data.ProtoBuf.WireType
