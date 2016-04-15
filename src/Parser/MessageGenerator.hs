@@ -182,26 +182,36 @@ getFieldLines f md fds = fmap (foldl' (<>) empty) ilines
 
 getFieldLine :: FileDesc -> MessageDesc -> FieldDesc -> State GenState Builder
 getFieldLine f md fd = do
-    fname   <- getFieldName fd
-    fprefix <- getFieldPrefix md fd
-    ftype   <- getFieldType f fd
-    return $ fname <> fromString " :: " <> fprefix <> ftype
+    fname <- getFieldName fd
+    ftype <- getFieldType f md fd
+    return $ fname <> fromString " :: " <> ftype
 
 
 getFieldName :: FieldDesc -> State GenState Builder
 getFieldName = return . fromString . FieldDesc.getName
 
 
-getFieldPrefix :: MessageDesc -> FieldDesc -> State GenState Builder
-getFieldPrefix md fd = case FieldDesc.getLabel fd of
-    Label.Optional -> return $ fromString "PB.Maybe "
-    Label.Required -> return $ if fieldCount > 1 then fromString "!" else empty
-    Label.Repeated -> return $ fromString "PB.Seq "
-  where fieldCount = length $ MessageDesc.getFields md
+getFieldType :: FileDesc -> MessageDesc -> FieldDesc -> State GenState Builder
+getFieldType f md fd = return $ case FieldDesc.getLabel fd of
+    Label.Optional ->
+      if fieldCount > 1
+        then fromString "!(PB.Maybe " <> innerType <> fromString ")"
+        else fromString "PB.Maybe " <> innerType
+    Label.Required ->
+      if fieldCount > 1
+        then fromString "!" <> innerType
+        else innerType
+    Label.Repeated ->
+      if fieldCount > 1
+        then fromString "!(PB.Seq " <> innerType <> fromString ")"
+        else fromString "PB.Seq " <> innerType
+  where
+    fieldCount = length $ MessageDesc.getFields md
+    innerType = getFieldInnerType f fd
 
 
-getFieldType :: FileDesc -> FieldDesc -> State GenState Builder
-getFieldType f fd = return $ fromString $ case FieldDesc.getType fd of
+getFieldInnerType :: FileDesc -> FieldDesc -> Builder
+getFieldInnerType f fd = fromString $ case FieldDesc.getType fd of
     (Just Type.Bool)     -> "PB.Bool"
     (Just Type.Bytes)    -> "PB.ByteString"
     (Just Type.Double)   -> "PB.Double"

@@ -8,8 +8,8 @@ import qualified Types.Int32Msg
 
 data Message = Message
   { bool :: !PB.Bool
-  , bytes :: PB.Maybe PB.ByteString
-  , int32msgs :: PB.Seq Types.Int32Msg.Int32Msg
+  , bytes :: !(PB.Maybe PB.ByteString)
+  , int32msgs :: !(PB.Seq Types.Int32Msg.Int32Msg)
   } deriving (PB.Show, PB.Eq, PB.Ord)
 
 instance PB.Default Message where
