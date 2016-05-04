@@ -78,10 +78,10 @@ For example, the protobuf library uses the following (example from the manual):
 
 ```
 data Foo = Foo
-{ field1 :: Required 1 (Value Int64)
-, field2 :: Optional 2 (Value Text)
-, field3 :: Repeated 3 (Value Bool)
-} deriving (Generic, Show)
+  { field1 :: Required 1 (Value Int64)
+  , field2 :: Optional 2 (Value Text)
+  , field3 :: Repeated 3 (Value Bool)
+  } deriving (Generic, Show)
 ```
 
 Whereas protobuf-simple would use the following:
