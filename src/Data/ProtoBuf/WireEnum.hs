@@ -4,7 +4,7 @@
 -- License:     MIT
 -- Maintainer:  Martijn Rijkeboer <mrr@sru-systems.com>
 --
--- WireEnum type class.
+-- WireEnum typeclass.
 
 module Data.ProtoBuf.WireEnum
     ( WireEnum(..)
@@ -14,6 +14,12 @@ module Data.ProtoBuf.WireEnum
 import Data.Int (Int32)
 
 
+-- | Typeclass to handle encoding en decoding of enums.
 class WireEnum a where
+
+    -- | Convert an Int32 to an enum value.
     intToEnum :: Int32 -> a
+
+
+    -- | Convert a enum value to an Int32.
     enumToInt :: a -> Int32

@@ -4,7 +4,7 @@
 -- License:     MIT
 -- Maintainer:  Martijn Rijkeboer <mrr@sru-systems.com>
 --
--- Internal functions used by the types for encoding and decoding.
+-- Internal functions used by the generated types.
 
 module Data.ProtoBufInt
     ( module Data.ProtoBuf.Default
@@ -44,5 +44,6 @@ import Data.Word             as Export (Word32, Word64)
 import Prelude               as Export (Double, Eq, Float, Ord, Show)
 
 
+-- | Append a value to a Seq.
 append :: Seq a -> a -> Seq a
 append seq val = seq |> val

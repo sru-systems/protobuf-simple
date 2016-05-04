@@ -4,7 +4,7 @@
 -- License:     MIT
 -- Maintainer:  Martijn Rijkeboer <mrr@sru-systems.com>
 --
--- Default type class.
+-- Default typeclass.
 
 module Data.ProtoBuf.Default
     ( Default(..)
@@ -22,7 +22,10 @@ import qualified Data.Sequence        as S
 import qualified Data.Text.Lazy       as T
 
 
+-- | Typeclass to handle default values.
 class Default a where
+
+    -- | The default value for the field.
     defaultVal :: a
 
 

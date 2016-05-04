@@ -4,7 +4,7 @@
 -- License:     MIT
 -- Maintainer:  Martijn Rijkeboer <mrr@sru-systems.com>
 --
--- Required type class.
+-- Required typeclass.
 
 module Data.ProtoBuf.Required
     ( Required(..)
@@ -15,5 +15,8 @@ import Data.ProtoBuf.WireTag (WireTag)
 import Data.Set (Set)
 
 
+-- | Typeclass to retrieve required WireTags.
 class Required a where
+
+    -- | The required WireTags for the data type.
     reqTags :: a -> Set WireTag

@@ -4,7 +4,7 @@
 -- License:     MIT
 -- Maintainer:  Martijn Rijkeboer <mrr@sru-systems.com>
 --
--- Mergeable type class
+-- Mergeable typeclass
 
 module Data.ProtoBuf.Mergeable
     ( Mergeable(..)
@@ -18,7 +18,10 @@ import Data.Text.Lazy (Text)
 import Data.Word (Word32, Word64)
 
 
+-- | Typeclass to handle merging of values.
 class Mergeable a where
+
+    -- | Merge two values.
     merge :: a -> a -> a
     merge _ b = b
 

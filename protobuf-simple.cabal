@@ -4,6 +4,37 @@
 name:                protobuf-simple
 version:             0.1.0.0
 synopsis:            Simple Protocol Buffers library (proto2)
+description:
+    .
+    An Haskell implementation of Google's Protocol Buffers version 2 with an
+    emphasis on simplicity. The implementation consists of a library for the
+    encoding and decoding of data and the `protoc` executable for generating
+    Haskell types from proto files. In fact, the types that are used in the
+    tests are generated with the following command:
+    .
+    > $ protoc data/Types.proto
+    .
+    In the example below, the `CustomType` is a Haskell type that was generated
+    with the `protoc` executable. The `encCustomType` function encodes a
+    CustomType into a ByteString. The `decCustomType` function decodes a
+    ByteString into either a CustomType or an error.
+    .
+    > module Codec where
+    >
+    > import Data.ByteString.Lazy (ByteString)
+    > import Data.ProtoBuf (decode, encode)
+    > import Types.CustomType (CustomType(..))
+    >
+    > encCustomType :: CustomType -> ByteString
+    > encCustomType = encode
+    >
+    > decCustomType :: ByteString -> Either String CustomType
+    > decCustomType = decode
+    .
+    The library exposes two modules, "Data.ProtoBuf", which is used for
+    encoding and decoding types and "Data.ProtoBufInt", which is an internal
+    module that is used by the generated types.
+
 homepage:            https://github.com/sru-systems/protobuf-simple
 license:             MIT
 license-file:        LICENSE

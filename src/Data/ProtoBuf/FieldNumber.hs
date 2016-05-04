@@ -17,6 +17,7 @@ import Data.Bits (shiftL, shiftR)
 import Data.Word (Word32)
 
 
+-- | Type to represent a field number (unique numbered tag).
 newtype FieldNumber = FieldNumber Word32
     deriving (Show, Eq, Ord)
 
@@ -30,10 +31,12 @@ instance Num FieldNumber where
     fromInteger i                     = FieldNumber (fromInteger i)
 
 
+-- | Convert a FieldNumber into a Word32.
 fromFieldNumber :: FieldNumber -> Word32
 fromFieldNumber (FieldNumber n) = shiftL n 3
 
 
+-- | Convert a Word32 into a FieldNumber or an error.
 toFieldNumber :: Word32 -> Either String FieldNumber
 toFieldNumber i
     | fn == 0                    = Left "Invalid FieldNumber 0"
