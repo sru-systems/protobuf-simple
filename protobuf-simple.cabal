@@ -121,7 +121,8 @@ stability:           experimental
 tested-with:         GHC == 7.10.3
 build-type:          Simple
 cabal-version:       >= 1.10
-data-dir:            data
+extra-source-files:  data/*.bin
+                   , data/Types.proto
 
 library
   hs-source-dirs:      src
