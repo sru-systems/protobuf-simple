@@ -15,6 +15,7 @@ import Data.List (foldl', intersperse)
 import Data.Monoid ((<>))
 import Data.Text.Lazy (Text)
 import Data.Text.Lazy.Builder (Builder, fromString, toLazyText)
+import Parser.CaseUtils (toPascal)
 import Parser.FieldDesc (FieldDesc)
 import Parser.FileDesc (FileDesc)
 import Parser.GeneratorUtils
@@ -33,7 +34,7 @@ getMessageCode f md = do
     moduleLine <- getModule f md
     importLines <- getImports f md
     typeLines <- getType f md
-    defaultInst <- getDefaultInst md
+    defaultInst <- getDefaultInst f md
     mergeableInst <- getMergeableInst md
     requiredInst <- getRequiredInst f md
     wireMessageInst <- getWireMessageInst f md
@@ -144,9 +145,9 @@ getDataType f md fds = do
   where name = MessageDesc.getName md
 
 
-getDefaultInst :: MessageDesc -> State GenState Builder
-getDefaultInst md = do
-    defaultLines <- getDefaultLines fields
+getDefaultInst :: FileDesc -> MessageDesc -> State GenState Builder
+getDefaultInst f md = do
+    defaultLines <- getDefaultLines f fields
     return $
       fromString "instance PB.Default " <> fromString name <> fromString " where" <> nl <>
       tab <> fromString "defaultVal = " <> fromString name <> nl <>
@@ -158,18 +159,55 @@ getDefaultInst md = do
     fields = MessageDesc.getFields md
 
 
-getDefaultLines :: [FieldDesc] -> State GenState Builder
-getDefaultLines fds = fmap (foldl' (<>) empty) ilines
+getDefaultLines :: FileDesc -> [FieldDesc] -> State GenState Builder
+getDefaultLines f fds = fmap (foldl' (<>) empty) ilines
   where
     ilines = fmap (intersperse separator) flines
-    flines = mapM getDefaultLine fds
+    flines = mapM (getDefaultLine f) fds
     separator = nl <> tab <> tab <> fromString ", "
 
 
-
-getDefaultLine :: FieldDesc -> State GenState Builder
-getDefaultLine fd = return $ fname <> fromString " = PB.defaultVal"
+getDefaultLine :: FileDesc -> FieldDesc -> State GenState Builder
+getDefaultLine f fd = do
+    dval <- getDefaultValue f fd
+    return $ fname <> fromString " = " <> dval
   where fname = fromString $ FieldDesc.getName fd
+
+
+getDefaultValue :: FileDesc -> FieldDesc -> State GenState Builder
+getDefaultValue f fd = do
+    state <- get
+    return $ fromString $ case FieldDesc.getLabel fd of
+      Label.Required -> "PB.defaultVal"
+      Label.Repeated -> "PB.defaultVal"
+      Label.Optional -> case FieldDesc.getDefaultValue fd of
+        Nothing  -> "PB.defaultVal"
+        Just val -> case FieldDesc.getType fd of
+          (Just Type.Bool)     -> if val == "true"
+                                    then "PB.Just PB.True"
+                                    else "PB.Just PB.False"
+          (Just Type.Bytes)    -> "PB.DefaultVal"
+          (Just Type.String)   -> "PB.Just (PB.pack " ++ val ++ ")"
+          (Just Type.Double)   -> "PB.Just " ++ val
+          (Just Type.Fixed32)  -> "PB.Just " ++ val
+          (Just Type.Fixed64)  -> "PB.Just " ++ val
+          (Just Type.Float)    -> "PB.Just " ++ val
+          (Just Type.Int32)    -> "PB.Just " ++ val
+          (Just Type.Int64)    -> "PB.Just " ++ val
+          (Just Type.SFixed32) -> "PB.Just " ++ val
+          (Just Type.SFixed64) -> "PB.Just " ++ val
+          (Just Type.SInt32)   -> "PB.Just " ++ val
+          (Just Type.SInt64)   -> "PB.Just " ++ val
+          (Just Type.UInt32)   -> "PB.Just " ++ val
+          (Just Type.UInt64)   -> "PB.Just " ++ val
+          _                    -> if isEnum f fd state
+                                    then "PB.Just " ++ enumValue val
+                                    else "PB.DefaultVal"
+  where
+    enumValue v = namespace ++ "." ++ enumType ++ "." ++ enumName v
+    namespace = getNamespace f
+    enumType = FieldDesc.getTypeName fd
+    enumName v = toPascal [v]
 
 
 getFieldLines :: FileDesc -> MessageDesc -> [FieldDesc] -> State GenState Builder

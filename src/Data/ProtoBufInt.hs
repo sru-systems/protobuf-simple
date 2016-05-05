@@ -33,13 +33,13 @@ import Data.ProtoBuf.WireType
 
 import Data.Sequence (Seq, (|>))
 
-import Data.Bool             as Export (Bool)
+import Data.Bool             as Export (Bool(..))
 import Data.ByteString.Lazy  as Export (ByteString)
 import Data.Int              as Export (Int32, Int64)
 import Data.Maybe            as Export (Maybe(..))
 import Data.Sequence         as Export (Seq)
 import Data.Set              as Export (fromList)
-import Data.Text.Lazy        as Export (Text)
+import Data.Text.Lazy        as Export (Text, pack)
 import Data.Word             as Export (Word32, Word64)
 import Prelude               as Export (Double, Eq, Float, Ord, Show)
 
