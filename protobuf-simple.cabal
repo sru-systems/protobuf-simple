@@ -152,7 +152,6 @@ executable protoc
   hs-source-dirs:      app, src
   main-is:             Parser.hs
   other-modules:       Parser.CaseUtils
-                     , Parser.CodeGenerator
                      , Parser.CodeInfo
                      , Parser.EnumDesc
                      , Parser.EnumGenerator
@@ -160,6 +159,7 @@ executable protoc
                      , Parser.FieldDesc
                      , Parser.FileDesc
                      , Parser.FileWriter
+                     , Parser.Generator
                      , Parser.GeneratorUtils
                      , Parser.Label
                      , Parser.MessageDesc

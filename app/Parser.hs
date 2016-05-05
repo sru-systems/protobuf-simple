@@ -12,8 +12,8 @@ module Main where
 import Data.Either (lefts, rights)
 import Parser.FileDesc (FileDesc)
 import Parser.FileWriter (write)
+import Parser.Generator (generate)
 import Parser.ProtoParser (parseProto)
-import Parser.CodeGenerator (generate)
 import System.Console.GetOpt (OptDescr(..), ArgDescr(..), ArgOrder(..), getOpt, usageInfo)
 import System.Environment (getArgs)
 

@@ -1,12 +1,12 @@
 -- |
--- Module:      Parser.CodeGenerator
+-- Module:      Parser.Generator
 -- Copyright:   (c) 2015-2016 Martijn Rijkeboer <mrr@sru-systems.com>
 -- License:     MIT
 -- Maintainer:  Martijn Rijkeboer <mrr@sru-systems.com>
 --
--- Generate the CodeInfo.
+-- Generator for the data types.
 
-module Parser.CodeGenerator
+module Parser.Generator
     ( generate
     ) where
 
