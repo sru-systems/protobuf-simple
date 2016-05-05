@@ -65,7 +65,7 @@ implementations is tested by decoding binary files that were created with
 protobuf-net (C#).
 
 
-## Other implementations
+## Other Implementations
 
 There are currently multiple Protocol Buffers implementations available. This
 library was created for the following reasons. Firstly, I wanted to use
