@@ -133,14 +133,9 @@ getEnumFilename ed = return $ EnumDesc.getName ed ++ ".hs"
 
 
 getFullEnumName :: FileDesc -> EnumDesc -> String
-getFullEnumName fd ed = case FileDesc.getPackage fd of
-    Just val -> val ++ "." ++ name
-    Nothing  -> name
-  where name = EnumDesc.getName ed
+getFullEnumName fd ed = (getNamespace fd) ++ "." ++ (EnumDesc.getName ed)
 
 
 getFullMessageName :: FileDesc -> MessageDesc -> String
-getFullMessageName fd md = case FileDesc.getPackage fd of
-    Just val -> val ++ "." ++ name
-    Nothing  -> name
-  where name = MessageDesc.getName md
+getFullMessageName fd md = (getNamespace fd) ++ "." ++ (MessageDesc.getName md)
+
