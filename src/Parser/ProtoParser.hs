@@ -426,7 +426,13 @@ identifier = lexeme ((:) <$> startChar <*> many nextChar)
 
 
 int32 :: Parsec String u Int32
-int32 = read <$> lexeme (many1 digit)
+int32 = read <$> lexeme ((:) <$> char '0' <*> zeroStart
+                         <|> many1 digit)
+  where
+    zeroStart = choice [ (:) <$> oneOf "xX" <*> many1 hexDigit
+                       , (:) <$> oneOf "oO" <*> many1 octDigit
+                       , many digit
+                       ]
 
 
 keyword :: String -> Parsec String u String
