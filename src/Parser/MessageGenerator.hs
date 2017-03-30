@@ -69,7 +69,9 @@ getModuleName f md = return $ case FileDesc.getPackage f of
 
 getImports :: FileDesc -> MessageDesc -> State GenState Builder
 getImports f md = return $
-    getUnqualifiedImport "Control.Applicative" "(<$>)" <>
+    (if MessageDesc.getFields md == []
+       then fromString ""
+       else getUnqualifiedImport "Control.Applicative" "(<$>)") <>
     getUnqualifiedImport "Prelude" "" <>
     getQualifiedAsImport "Data.ProtoBufInt" "PB" <>
     getExtraImports f md
@@ -276,7 +278,9 @@ getMergeableInst md = do
     mergeableLines <- getMergeableLines fields
     return $
       fromString "instance PB.Mergeable " <> fromString name <> fromString " where" <> nl <>
-      tab <> fromString "merge a b = " <> fromString name <> nl <>
+      tab <> (if mergeableLines == fromString ""
+                then fromString "merge _ _ = "
+                else fromString "merge a b = ") <> fromString name <> nl <>
       tab <> tab <> fromString "{ " <>
       mergeableLines <> nl <>
       tab <> tab <> fromString "}" <> nl
@@ -368,8 +372,10 @@ getWireMessageInst f md = do
     return $
       fromString "instance PB.WireMessage " <> fromString name <> fromString " where" <> nl <>
       flines <> nl <>
-      tab <> fromString "messageToFields self = do" <> nl <>
-      mlines <> nl
+      tab <> if mlines == fromString ""
+               then fromString "messageToFields _ = PB.return ()" <> nl
+               else fromString "messageToFields self = do" <> nl <>
+                    mlines <> nl
   where
     name = MessageDesc.getName md
     fields = MessageDesc.getFields md

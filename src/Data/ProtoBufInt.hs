@@ -41,7 +41,7 @@ import Data.Sequence         as Export (Seq)
 import Data.Set              as Export (fromList)
 import Data.Text.Lazy        as Export (Text, pack)
 import Data.Word             as Export (Word32, Word64)
-import Prelude               as Export (Double, Eq, Float, Ord, Show)
+import Prelude               as Export (Double, Eq, Float, Ord, Show, return)
 
 
 -- | Append a value to a Seq.
