@@ -133,15 +133,15 @@ spec = describe "parseProto" $ do
             , "    optional fixed32 f04 = 4;"
             , "    optional fixed64 f05 = 5;"
             , "    optional float f06 = 6;"
-            , "    optional int32 f07 = 7;"
-            , "    optional int64 f08 = 8;"
+            , "    optional int32 f07 = 0o7;"
+            , "    optional int64 f08 = 0o10;"
             , "    optional sfixed32 f09 = 9;"
             , "    optional sfixed64 f10 = 10;"
             , "    optional sint32 f11 = 11;"
             , "    optional sint64 f12 = 12;"
             , "    optional string f13 = 13;"
-            , "    optional uint32 f14 = 14;"
-            , "    optional uint64 f15 = 15;"
+            , "    optional uint32 f14 = 0xe;"
+            , "    optional uint64 f15 = 0xF;"
             , "}"
             ])
         `shouldParse`
@@ -195,11 +195,11 @@ spec = describe "parseProto" $ do
     it "parses a message with a enum field" $
         parseProto "Test.proto" (unlines
             [ "message EnumMessage {"
-            , "    optional EnumType value = 1;"
+            , "    optional EnumType value = 0x1;"
             , "}"
             , "enum EnumType {"
             , "    UNKNOWN = 0;"
-            , "    INIT = 1;"
+            , "    INIT = 0x1;"
             , "}"
             ])
         `shouldParse`
