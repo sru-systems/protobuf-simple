@@ -32,6 +32,18 @@ spec = describe "parseProto" $ do
         FileDesc.new "Test"
 
 
+    it "parses leading comments" $
+        parseProto "Test.proto" "// Comment test"
+        `shouldParse`
+        FileDesc.new "Test"
+
+
+    it "parses syntax statement" $
+        parseProto "Test.proto" "syntax = \"proto2\";"
+        `shouldParse`
+        FileDesc.new "Test"
+
+
     it "parses package name" $
         parseProto "Test.proto" "package Google.ProtoBuf;"
         `shouldParse`

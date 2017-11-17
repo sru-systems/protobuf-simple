@@ -46,11 +46,33 @@ getName = dropExtensions . snd . splitFileName
 -- FileDesc functions
 file :: FileDesc -> Parsec String u FileDesc
 file s = (eof >> return s) <|> (choice
-    [ package s
+    [ comments s
+    , syntax s
+    , package s
     , fileOption s
     , enumDesc s
     , messageDesc s
     ] >>= file)
+
+
+comments :: FileDesc -> Parsec String u FileDesc
+comments s = do
+  void $ choice
+    [ string "//" *> manyTill anyChar (void eol  <|> eof)
+    , many1 (oneOf " \t\n\r")
+    ]
+  return s
+
+
+syntax :: FileDesc -> Parsec String u FileDesc
+syntax s = do
+    void $ keyword "syntax"
+    void $ symbol '='
+    void $ char '"'
+    void $ string "proto2"
+    void $ char '"'
+    void $ symbol ';'
+    return s
 
 
 package :: FileDesc -> Parsec String u FileDesc
