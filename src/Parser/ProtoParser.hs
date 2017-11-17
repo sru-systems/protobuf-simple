@@ -13,7 +13,6 @@ module Parser.ProtoParser
 
 import Control.Monad (void)
 import Data.Int (Int32)
-import Parser.CaseUtils (fromSnake, toCamel, toPascal)
 import Parser.EnumDesc (EnumDesc)
 import Parser.FieldDesc (FieldDesc)
 import Parser.FileDesc (FileDesc)
@@ -23,6 +22,7 @@ import Parser.OptimizeMode (OptimizeMode)
 import System.FilePath (dropExtensions, splitFileName)
 import Text.Parsec
 
+import qualified Parser.CaseUtils      as CU
 import qualified Parser.EnumDesc       as EnumDesc
 import qualified Parser.EnumValueDesc  as EnumValueDesc
 import qualified Parser.FieldDesc      as FieldDesc
@@ -78,7 +78,7 @@ syntax s = do
 package :: FileDesc -> Parsec String u FileDesc
 package s = do
     void $  keyword "package"
-    val  <- dString
+    val  <- (CU.toDotted . fmap CU.toTitleWord . CU.fromDotted) <$> dString
     void $  symbol ';'
     return $ FileDesc.setPackage val s
 
@@ -313,7 +313,7 @@ enumValueDesc s = do
 
 
 enumValueName :: Parsec String u String
-enumValueName = fmap (toPascal . fromSnake) identifier
+enumValueName = fmap (CU.toPascal . CU.fromSnake) identifier
 
 
 enumValueNumber :: Parsec String u Int32
@@ -346,7 +346,7 @@ typeName = identifier
 
 
 fieldName :: Parsec String u String
-fieldName = fmap (toCamel . fromSnake) identifier
+fieldName = fmap (CU.toCamel . CU.fromSnake) identifier
 
 
 fieldNumber :: Parsec String u Int32

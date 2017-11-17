@@ -45,7 +45,7 @@ spec = describe "parseProto" $ do
 
 
     it "parses package name" $
-        parseProto "Test.proto" "package Google.ProtoBuf;"
+        parseProto "Test.proto" "package google.protoBuf;"
         `shouldParse`
         FileDesc.setPackage "Google.ProtoBuf" (FileDesc.new "Test")
 

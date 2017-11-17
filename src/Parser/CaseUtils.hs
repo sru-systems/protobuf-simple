@@ -6,15 +6,16 @@
 --
 -- Utility functions for converting string cases.
 
-module Parser.CaseUtils
-    ( fromSnake
-    , toCamel
-    , toPascal
-    ) where
+module Parser.CaseUtils where
 
 
 import Data.Char (toLower, toUpper)
+import Data.List (intercalate)
 import Data.List.Split (splitOn)
+
+
+fromDotted :: String -> [String]
+fromDotted = splitOn "."
 
 
 fromSnake :: String -> [String]
@@ -26,14 +27,23 @@ toCamel (w:ws) = toLowerWord w ++ concatMap toPascalWord ws
 toCamel []     = ""
 
 
-toPascal :: [String] -> String
-toPascal = concatMap toPascalWord
+toDotted :: [String] -> String
+toDotted = intercalate "."
 
 
 toLowerWord :: String -> String
 toLowerWord = map toLower
 
 
+toPascal :: [String] -> String
+toPascal = concatMap toPascalWord
+
+
 toPascalWord :: String -> String
 toPascalWord (c:cs) = toUpper c : map toLower cs
 toPascalWord []     = ""
+
+
+toTitleWord :: String -> String
+toTitleWord (c:cs) = toUpper c : cs
+toTitleWord []     = ""
