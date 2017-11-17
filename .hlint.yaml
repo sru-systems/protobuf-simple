@@ -1,0 +1,7 @@
+# HLint configuration file
+# https://github.com/ndmitchell/hlint
+##########################
+
+# Ignore some builtin hints
+- ignore: {name: Reduce duplication, within: Parser.ProtoParser}
+- ignore: {name: Redundant bracket, within: Parser.ProtoParserSpec}

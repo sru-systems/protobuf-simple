@@ -69,7 +69,7 @@ getModuleName f md = return $ case FileDesc.getPackage f of
 
 getImports :: FileDesc -> MessageDesc -> State GenState Builder
 getImports f md = return $
-    (if MessageDesc.getFields md == []
+    (if null (MessageDesc.getFields md)
        then fromString ""
        else getUnqualifiedImport "Control.Applicative" "(<$>)") <>
     getUnqualifiedImport "Prelude" "" <>

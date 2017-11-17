@@ -12,6 +12,7 @@ module Parser.ProtoParser
 
 
 import Control.Monad (void)
+import Data.Functor (($>))
 import Data.Int (Int32)
 import Parser.EnumDesc (EnumDesc)
 import Parser.FieldDesc (FieldDesc)
@@ -151,9 +152,9 @@ fileOptimizeFor s =
 
 optimizeMode :: Parsec String u OptimizeMode
 optimizeMode = choice
-    [ string "SPEED"        *> return OptimizeMode.Speed
-    , string "CODE_SIZE"    *> return OptimizeMode.CodeSize
-    , string "LITE_RUNTIME" *> return OptimizeMode.LiteRuntime
+    [ string "SPEED"        $> OptimizeMode.Speed
+    , string "CODE_SIZE"    $> OptimizeMode.CodeSize
+    , string "LITE_RUNTIME" $> OptimizeMode.LiteRuntime
     ]
 
 
@@ -335,9 +336,9 @@ fieldDesc s = do
 
 fieldLabel :: Parsec String u Label
 fieldLabel = choice
-    [ try $ keyword "optional" *> return Label.Optional
-    , try $ keyword "required" *> return Label.Required
-    , try $ keyword "repeated" *> return Label.Repeated
+    [ try $ keyword "optional" $> Label.Optional
+    , try $ keyword "required" $> Label.Required
+    , try $ keyword "repeated" $> Label.Repeated
     ]
 
 
@@ -397,19 +398,18 @@ getFieldOption :: String -> Parsec String u t -> Parsec String u t
 getFieldOption name parser = do
     void $ keyword name
     void $ symbol '='
-    val <- parser
-    return val
+    parser
 
 
 -- General functions
 bool :: Parsec String u Bool
 bool = choice
-    [try (keyword "FALSE") *> return False
-    ,keyword "False"       *> return False
-    ,keyword "false"       *> return False
-    ,try (keyword "TRUE")  *> return True
-    ,keyword "True"        *> return True
-    ,keyword "true"        *> return True
+    [try (keyword "FALSE") $> False
+    ,keyword "False"       $> False
+    ,keyword "false"       $> False
+    ,try (keyword "TRUE")  $> True
+    ,keyword "True"        $> True
+    ,keyword "true"        $> True
     ]
 
 

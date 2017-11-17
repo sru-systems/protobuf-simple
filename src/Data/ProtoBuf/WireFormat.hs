@@ -308,7 +308,7 @@ getGroup = loop defaultMsg reqTagSet
                 tag <- getWireTag
                 msg' <- fieldToValue tag msg
                 loop msg' reqs
-        loop msg reqs | otherwise = do
+        loop msg reqs = do
             done <- isEmpty
             if done
             then fail "Missing required field(s)"
