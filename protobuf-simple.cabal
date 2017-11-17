@@ -3,7 +3,7 @@
 
 name:                protobuf-simple
 synopsis:            Simple Protocol Buffers library (proto2)
-version:             0.1.0.4
+version:             0.1.0.5
 homepage:            https://github.com/sru-systems/protobuf-simple
 license:             MIT
 license-file:        LICENSE
