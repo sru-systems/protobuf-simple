@@ -106,4 +106,4 @@ usage = usageInfo "Usage: protobuf-simple-protoc [OPTION]... FILES" options
 
 
 version :: String
-version = "protobuf-simple-protoc 0.1.0.5"
+version = "protobuf-simple-protoc 0.1.1.0"
