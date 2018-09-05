@@ -2,18 +2,18 @@
 
 An Haskell implementation of Google's Protocol Buffers version 2 with an
 emphasis on simplicity. The implementation consists of a library for encoding
-and decoding of data and the `protoc` executable for generating Haskell types
-from proto files. In fact, the types that are used in the tests are generated
-with the following command:
+and decoding of data and the `protobuf-simple-protoc` executable for generating
+Haskell types from proto files. In fact, the types that are used in the tests
+are generated with the following command:
 
 ```
-$ protoc data/Types.proto
+$ protobuf-simple-protoc data/Types.proto
 ```
 
 In the example below, the `CustomType` is a Haskell type that was generated
-with the `protoc` executable. The `encCustomType` function encodes a CustomType
-into a ByteString. The `decCustomType` function decodes a ByteString into
-either a CustomType or an error.
+with the `protobuf-simple-protoc` executable. The `encCustomType` function
+encodes a CustomType into a ByteString. The `decCustomType` function decodes a
+ByteString into either a CustomType or an error.
 
 ```
 module Codec where

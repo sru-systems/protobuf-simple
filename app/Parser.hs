@@ -4,7 +4,7 @@
 -- License:     MIT
 -- Maintainer:  Martijn Rijkeboer <mrr@sru-systems.com>
 --
--- Main module for the protoc executable.
+-- Main module for the protobuf-simple-protoc executable.
 
 module Main where
 
@@ -98,12 +98,12 @@ parseFile info = parseProto (filePath info) (content info)
 
 
 noFiles :: String
-noFiles = "protoc: no file given\n" ++ usage
+noFiles = "protobuf-simple-protoc: no file given\n" ++ usage
 
 
 usage :: String
-usage = usageInfo "Usage: protoc [OPTION]... FILES" options
+usage = usageInfo "Usage: protobuf-simple-protoc [OPTION]... FILES" options
 
 
 version :: String
-version = "protoc 0.0.1"
+version = "protobuf-simple-protoc 0.1.0.5"
