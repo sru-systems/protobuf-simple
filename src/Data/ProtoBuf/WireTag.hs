@@ -14,8 +14,8 @@ module Data.ProtoBuf.WireTag
 
 
 import Data.Bits ((.|.))
-import Data.ProtoBuf.FieldNumber
-import Data.ProtoBuf.WireType
+import Data.ProtoBuf.FieldNumber (fromFieldNumber, toFieldNumber, FieldNumber)
+import Data.ProtoBuf.WireType (fromWireType, toWireType, WireType)
 import Data.Word (Word32)
 
 

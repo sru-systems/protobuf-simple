@@ -4,7 +4,7 @@ module Parser.ProtoParserSpec
     ) where
 
 import Parser.ProtoParser  (parseProto)
-import Test.Hspec
+import Test.Hspec (Spec, hspec, describe, it, shouldBe, Expectation)
 
 import qualified Parser.EnumDesc      as EnumDesc
 import qualified Parser.EnumValueDesc as EnumValueDesc

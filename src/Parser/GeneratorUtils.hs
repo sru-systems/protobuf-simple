@@ -12,7 +12,7 @@ import Control.Monad.State (State)
 import Data.Maybe (fromMaybe)
 import Data.Set (Set)
 import Data.Text.Lazy.Builder (Builder, fromString, singleton)
-import Parser.CodeInfo
+import Parser.CodeInfo (CodeInfo)
 import Parser.FieldDesc (FieldDesc)
 import Parser.FileDesc (FileDesc)
 

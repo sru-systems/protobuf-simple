@@ -3,9 +3,9 @@ module Data.ProtoBuf.ZigZagSpec
     , spec
     ) where
 
-import Data.ProtoBuf.ZigZag
-import Test.Hspec
-import Test.QuickCheck
+import Data.ProtoBuf.ZigZag (decode32, decode64, encode32, encode64)
+import Test.Hspec (Spec, hspec, describe, it)
+import Test.QuickCheck (Testable(property))
 import Test.QuickCheck.Instances ()
 
 

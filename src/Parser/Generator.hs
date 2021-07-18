@@ -14,11 +14,16 @@ module Parser.Generator
 import Control.Monad.State (State, execState, get, put)
 import Data.List (foldl')
 import Data.List.Split (splitOn)
-import Parser.CodeInfo
+import Parser.CodeInfo (CodeInfo(CodeInfo))
 import Parser.EnumDesc (EnumDesc)
 import Parser.EnumGenerator (getEnumCode)
 import Parser.FileDesc (FileDesc)
 import Parser.GeneratorUtils
+    ( MessageSet,
+      EnumSet,
+      GenState(GenState, codeInfos),
+      getNamespace
+    )
 import Parser.MessageDesc (MessageDesc)
 import Parser.MessageGenerator (getMessageCode)
 import System.FilePath (joinPath)

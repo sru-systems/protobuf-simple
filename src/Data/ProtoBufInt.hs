@@ -21,15 +21,15 @@ module Data.ProtoBufInt
     ) where
 
 
-import Data.ProtoBuf.Default
-import Data.ProtoBuf.FieldNumber
-import Data.ProtoBuf.Mergeable
-import Data.ProtoBuf.Required
-import Data.ProtoBuf.WireEnum
+import Data.ProtoBuf.Default (Default(..))
+import Data.ProtoBuf.FieldNumber (fromFieldNumber, toFieldNumber, FieldNumber(..))
+import Data.ProtoBuf.Mergeable (Mergeable(..))
+import Data.ProtoBuf.Required (Required(..))
+import Data.ProtoBuf.WireEnum (WireEnum(..))
 import Data.ProtoBuf.WireFormat
-import Data.ProtoBuf.WireMessage
-import Data.ProtoBuf.WireTag
-import Data.ProtoBuf.WireType
+import Data.ProtoBuf.WireMessage (WireMessage(..))
+import Data.ProtoBuf.WireTag (fromWireTag, toWireTag, WireTag(..))
+import Data.ProtoBuf.WireType (fromWireType, toWireType, WireType(..))
 
 import Data.Sequence (Seq, (|>))
 

@@ -18,6 +18,20 @@ import Parser.CaseUtils (toPascal)
 import Parser.FieldDesc (FieldDesc)
 import Parser.FileDesc (FileDesc)
 import Parser.GeneratorUtils
+    ( Packed,
+      GenState,
+      isEnum,
+      isPacked,
+      getComment,
+      getNamespace,
+      getUnqualifiedImport,
+      getQualifiedImport,
+      getQualifiedAsImport,
+      empty,
+      nl,
+      space,
+      tab
+    )
 import Parser.MessageDesc (MessageDesc)
 
 import qualified Parser.FieldDesc    as FieldDesc

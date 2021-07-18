@@ -22,6 +22,28 @@ import Parser.MessageDesc (MessageDesc)
 import Parser.OptimizeMode (OptimizeMode)
 import System.FilePath (dropExtensions, splitFileName)
 import Text.Parsec
+    ( anyChar,
+      char,
+      digit,
+      hexDigit,
+      letter,
+      noneOf,
+      octDigit,
+      oneOf,
+      string,
+      choice,
+      eof,
+      many1,
+      manyTill,
+      option,
+      (<?>),
+      (<|>),
+      lookAhead,
+      many,
+      parse,
+      try,
+      Parsec
+    )
 
 import qualified Parser.CaseUtils      as CU
 import qualified Parser.EnumDesc       as EnumDesc

@@ -7,11 +7,11 @@ module Data.ProtoBufSpec
     ) where
 
 import Data.ByteString.Lazy (ByteString, pack, readFile)
-import Data.ProtoBuf (decode, encode)
+import Data.ProtoBuf.WireFormat (decode, encode)
 import Prelude hiding (Enum, readFile)
 import System.FilePath ((</>))
-import Test.Hspec
-import Test.QuickCheck
+import Test.Hspec (Spec, hspec, context, describe, it, shouldBe, SpecWith)
+import Test.QuickCheck (elements, Arbitrary(arbitrary), Testable(property))
 import Test.QuickCheck.Instances ()
 
 import Types.BoolList (BoolList(..))

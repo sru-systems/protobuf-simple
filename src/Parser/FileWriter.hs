@@ -11,7 +11,7 @@ module Parser.FileWriter
     ) where
 
 import Data.Text.Lazy.IO (writeFile)
-import Parser.CodeInfo
+import Parser.CodeInfo (CodeInfo(filename, code, directories))
 import System.Directory (createDirectoryIfMissing)
 import System.FilePath  ((</>))
 import Prelude hiding (writeFile)

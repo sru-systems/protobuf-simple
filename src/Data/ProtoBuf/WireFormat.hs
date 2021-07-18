@@ -149,14 +149,14 @@ import Data.Bits (Bits, (.|.), (.&.), shiftL, shiftR, setBit, testBit)
 import Data.ByteString.Lazy (ByteString)
 import Data.Foldable (forM_)
 import Data.Int (Int32, Int64)
-import Data.ProtoBuf.Default
-import Data.ProtoBuf.FieldNumber
-import Data.ProtoBuf.Mergeable
-import Data.ProtoBuf.Required
-import Data.ProtoBuf.WireEnum
-import Data.ProtoBuf.WireMessage
-import Data.ProtoBuf.WireTag
-import Data.ProtoBuf.WireType
+import Data.ProtoBuf.Default (Default(..))
+import Data.ProtoBuf.FieldNumber (fromFieldNumber, toFieldNumber, FieldNumber(..))
+import Data.ProtoBuf.Mergeable (Mergeable(..))
+import Data.ProtoBuf.Required (Required(..))
+import Data.ProtoBuf.WireEnum (WireEnum(..))
+import Data.ProtoBuf.WireMessage (WireMessage(..))
+import Data.ProtoBuf.WireTag (fromWireTag, toWireTag, WireTag(..))
+import Data.ProtoBuf.WireType (fromWireType, toWireType, WireType(..))
 import Data.Sequence (Seq, (|>))
 import Data.Text.Lazy (Text)
 import Data.Text.Lazy.Encoding (decodeUtf8', encodeUtf8)

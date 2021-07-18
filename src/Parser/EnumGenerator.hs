@@ -18,6 +18,14 @@ import Parser.EnumDesc (EnumDesc)
 import Parser.EnumValueDesc (EnumValueDesc)
 import Parser.FileDesc (FileDesc)
 import Parser.GeneratorUtils
+    ( GenState,
+      getComment,
+      getUnqualifiedImport,
+      getQualifiedAsImport,
+      empty,
+      nl,
+      tab
+    )
 
 import qualified Parser.EnumDesc       as EnumDesc
 import qualified Parser.EnumValueDesc  as EnumValueDesc
