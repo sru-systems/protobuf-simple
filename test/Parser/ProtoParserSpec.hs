@@ -38,6 +38,16 @@ spec = describe "parseProto" $ do
         FileDesc.new "Test"
 
 
+    it "parses block comments" $
+        parseProto "Test.proto" (unlines
+          [ "/* Line 1 "
+          , " * Line 2 "
+          , " */"
+          ])
+        `shouldParse`
+        FileDesc.new "Test"
+
+
     it "parses syntax statement" $
         parseProto "Test.proto" "syntax = \"proto2\";"
         `shouldParse`

@@ -81,8 +81,11 @@ file s = (eof >> return s) <|> (choice
 comments :: FileDesc -> Parsec String u FileDesc
 comments s = do
   void $ choice
-    [ string "//" *> manyTill anyChar (void eol  <|> eof)
-    , many1 (oneOf " \t\n\r")
+    [ char '/' *> choice
+      [ char '/' *> manyTill anyChar (void eol <|> eof)
+      , char '*' *> manyTill anyChar (try (string "*/"))
+      ]
+    , many1 (oneOf " \t\n\t")
     ]
   return s
 
