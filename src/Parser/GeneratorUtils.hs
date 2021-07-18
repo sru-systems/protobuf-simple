@@ -10,7 +10,6 @@ module Parser.GeneratorUtils where
 
 import Control.Monad.State (State)
 import Data.Maybe (fromMaybe)
-import Data.Monoid ((<>))
 import Data.Set (Set)
 import Data.Text.Lazy.Builder (Builder, fromString, singleton)
 import Parser.CodeInfo

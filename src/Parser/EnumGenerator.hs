@@ -12,7 +12,6 @@ module Parser.EnumGenerator
 
 import Control.Monad.State (State)
 import Data.List (foldl', groupBy, intersperse, sortOn)
-import Data.Monoid ((<>))
 import Data.Text.Lazy (Text)
 import Data.Text.Lazy.Builder (Builder, fromString, toLazyText)
 import Parser.EnumDesc (EnumDesc)

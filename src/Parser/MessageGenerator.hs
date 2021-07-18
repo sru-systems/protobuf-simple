@@ -12,7 +12,6 @@ module Parser.MessageGenerator
 
 import Control.Monad.State (State, get)
 import Data.List (foldl', intersperse)
-import Data.Monoid ((<>))
 import Data.Text.Lazy (Text)
 import Data.Text.Lazy.Builder (Builder, fromString, toLazyText)
 import Parser.CaseUtils (toPascal)
